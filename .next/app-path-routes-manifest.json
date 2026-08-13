@@ -4,9 +4,9 @@
   "/activities/page": "/activities",
   "/advisory/page": "/advisory",
   "/articles/page": "/articles",
-  "/membership/page": "/membership",
-  "/leadership/page": "/leadership",
-  "/vision/page": "/vision",
   "/contact/page": "/contact",
+  "/leadership/page": "/leadership",
+  "/membership/page": "/membership",
+  "/vision/page": "/vision",
   "/page": "/"
 }
