@@ -1,15 +1,6 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import "./globals.css";
-
-export const metadata: Metadata = {
-  title: "مجلس اتحادِ ملت",
-  description: "فکری ہم آہنگی، علمی مکالمہ اور ملی وحدت کے لیے مشترکہ پلیٹ فارم",
-};
-
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return (
-    <html lang="ur" dir="rtl">
-      <body>{children}</body>
-    </html>
-  );
-}
+export const metadata: Metadata={title:"مجلس اتحادِ ملت",description:"فکری ہم آہنگی، علمی مکالمہ اور ملی وحدت"};
+const nav=[["تعارف","/about"],["وژن و اہداف","/vision"],["مجلس بزرگان","/leadership"],["مجلس مشاورت","/advisory"],["مضامین","/articles"],["سرگرمیاں","/activities"],["رکنیت","/membership"]];
+export default function RootLayout({children}:{children:React.ReactNode}){return <html lang="ur" dir="rtl"><body><div className="top">اختلاف میں احترام • مشترکات میں تعاون • ملی مسائل میں ذمہ دارانہ رہنمائی</div><header><div className="wrap head"><Link className="brand" href="/"><b className="logo">م</b><span><strong>مجلس اتحادِ ملت</strong><small>علمی و مشاورتی پلیٹ فارم</small></span></Link><nav>{nav.map(([n,h])=><Link key={h} href={h}>{n}</Link>)}<Link className="cta" href="/contact">رابطہ</Link></nav></div></header>{children}<footer><div className="wrap foot"><div><h3>مجلس اتحادِ ملت</h3><p>فکری ہم آہنگی، علمی مکالمہ، آدابِ اختلاف اور مشترکہ ملی مسائل میں تعاون کے لیے علمی و مشاورتی پلیٹ فارم۔</p></div><div><h4>اہم روابط</h4><Link href="/about">تعارف</Link><Link href="/vision">وژن و اہداف</Link><Link href="/leadership">مجلس بزرگان</Link></div><div><h4>مزید</h4><Link href="/membership">رکنیت</Link><Link href="/contact">رابطہ</Link><Link href="/activities">سرگرمیاں</Link></div></div><div className="copy">© 2026 مجلس اتحادِ ملت</div></footer></body></html>}
