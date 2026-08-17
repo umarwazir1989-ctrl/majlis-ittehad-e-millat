@@ -1024,3 +1024,499 @@ body{
   .auditHead{align-items:flex-start;flex-direction:column}
   .auditCheck{align-items:flex-start;flex-direction:column}
 }
+
+/* =========================================================
+   Phase 15 — Professional homepage + reliable mobile Urdu font
+   ========================================================= */
+
+/* Reliable Urdu font on desktop + Android + iPhone */
+:root{
+  --font-ui:var(--font-urdu),"Noto Nastaliq Urdu","Noto Nastaliq Urdu UI","Jameel Noori Nastaleeq",serif;
+  --font-clean:var(--font-arabic),"Noto Sans Arabic","Segoe UI",Arial,sans-serif;
+  --pro-green:#063f3d;
+  --pro-green-2:#075754;
+  --pro-deep:#063638;
+  --pro-gold:#c99b47;
+  --pro-gold-light:#e1bd79;
+  --pro-cream:#fbf7ee;
+  --pro-paper:#fffdfa;
+}
+html[lang="ur"] body,
+html[lang="ur"] button,
+html[lang="ur"] input,
+html[lang="ur"] select,
+html[lang="ur"] textarea{
+  font-family:var(--font-ui)!important
+}
+html[lang="ur"] body{
+  font-synthesis:none;
+  font-kerning:normal
+}
+.eyebrow,.articleMeta,.filterCount,.councilBadge,.proKickerV15,.proUpdateTypeV15{
+  font-family:var(--font-clean)
+}
+
+/* Header inspired by reference, cleaner and more responsive */
+.proHeaderV15{
+  position:sticky;
+  top:0;
+  z-index:80;
+  background:linear-gradient(100deg,#053b3a 0%,#064b48 58%,#06383b 100%);
+  border-bottom:1px solid #c99b4755;
+  box-shadow:0 5px 22px #0d24251c
+}
+.proHeadInnerV15{
+  min-height:92px;
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr) auto;
+  align-items:center;
+  gap:28px
+}
+.proBrandV15{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  min-width:max-content;
+  color:#fff
+}
+.proBrandV15 img{
+  width:67px;
+  height:67px;
+  object-fit:contain;
+  filter:drop-shadow(0 5px 8px #001b1d55)
+}
+.proBrandV15 strong{
+  display:block;
+  color:#fffaf0;
+  font-size:26px;
+  line-height:1.65;
+  font-weight:700
+}
+.proBrandV15 small{
+  display:block;
+  color:#d9d5c9;
+  font-size:11.5px;
+  margin-top:-8px
+}
+.proDesktopNavV15{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:1px;
+  min-width:0
+}
+.proDesktopNavV15 a{
+  position:relative;
+  color:#e5e6df;
+  padding:10px 10px 8px;
+  font-size:14.5px;
+  font-weight:500;
+  white-space:nowrap;
+  transition:.2s
+}
+.proDesktopNavV15 a:hover,.proDesktopNavV15 a.active{color:#e8bb64}
+.proDesktopNavV15 a.active:after{
+  content:"";
+  position:absolute;
+  right:25%;
+  left:25%;
+  bottom:0;
+  height:2px;
+  border-radius:3px;
+  background:#d6a54d
+}
+.proActionsV15{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:12px
+}
+.proSearchV15{
+  width:42px;height:42px;
+  display:grid;place-items:center;
+  color:#f5f2e8
+}
+.proSearchV15 svg{
+  width:25px;height:25px;
+  fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round
+}
+.proCtaV15{
+  background:linear-gradient(135deg,#d6a64e,#bf8c35);
+  color:#133532;
+  padding:10px 20px;
+  border-radius:8px;
+  font-size:14px;
+  font-weight:700;
+  box-shadow:0 6px 18px #00171935;
+  white-space:nowrap
+}
+.proCtaV15:hover{filter:brightness(1.06)}
+.proMenuBtnV15{
+  display:none;
+  width:44px;height:44px;
+  border:1px solid #ffffff38;
+  border-radius:9px;
+  background:#ffffff0d;
+  padding:10px;
+  cursor:pointer
+}
+.proMenuBtnV15 span{
+  display:block;height:2px;margin:4px 0;border-radius:3px;background:#fff
+}
+
+/* Mobile menu */
+.proMobileMenuV15{
+  position:fixed;top:0;right:0;bottom:0;z-index:100;
+  width:min(390px,89vw);
+  padding:20px;
+  background:#fffdf8;
+  transform:translateX(105%);
+  transition:transform .28s ease;
+  box-shadow:-18px 0 60px #0d243035;
+  overflow:auto
+}
+.proMobileMenuV15.open{transform:translateX(0)}
+.proMobileHeadV15{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding-bottom:15px;border-bottom:1px solid #e8dfcf
+}
+.proMobileBrandV15{display:flex;align-items:center;gap:9px}
+.proMobileBrandV15 img{width:48px;height:48px}
+.proMobileBrandV15 strong{display:block;color:var(--pro-deep);font-size:20px}
+.proMobileBrandV15 small{display:block;color:#78847e;font-size:11px}
+.proMobileHeadV15>button{
+  width:40px;height:40px;border:1px solid #ddd3c4;border-radius:9px;
+  background:#fff;color:#17413b;font-size:25px;cursor:pointer
+}
+.proMobileLinksV15{display:grid;gap:4px;padding-top:14px}
+.proMobileLinksV15>a:not(.proMobileCtaV15){
+  display:flex;align-items:center;justify-content:space-between;
+  padding:9px 12px;border-radius:10px;color:#30453f;font-weight:600
+}
+.proMobileLinksV15>a.active{background:#eaf3ee;color:#07534c}
+.proMobileLinksV15>a b{color:#bc8c3e}
+.proMobileCtaV15{
+  margin-top:13px;
+  text-align:center;
+  padding:10px 15px;
+  background:#c8953e;color:#173934;border-radius:9px;font-weight:700
+}
+
+/* Hero */
+.proHeroV15{
+  position:relative;
+  padding:60px 0 0;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 92% 5%,#ffffff 0,transparent 28%),
+    linear-gradient(100deg,#f8f1e3 0%,#fffefa 48%,#f5eee2 100%)
+}
+.proHeroPatternV15{
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:32%;
+  opacity:.48;
+  background:
+    radial-gradient(circle at 14% 82%,#c7953e35 0 2px,transparent 3px) 0 0/28px 28px,
+    linear-gradient(120deg,transparent 45%,#d4ac6850 46% 47%,transparent 48%) 0 0/56px 56px
+}
+.proHeroPatternV15:after{
+  content:"";
+  position:absolute;
+  left:0;bottom:0;
+  width:260px;height:330px;
+  opacity:.28;
+  background:
+    radial-gradient(ellipse at 50% 100%,#bb8e47 0 44%,transparent 45%) 5px 190px/110px 120px no-repeat,
+    radial-gradient(ellipse at 50% 100%,#bb8e47 0 44%,transparent 45%) 90px 155px/140px 160px no-repeat,
+    linear-gradient(#bb8e47,#bb8e47) 40px 220px/40px 110px no-repeat,
+    linear-gradient(#bb8e47,#bb8e47) 140px 195px/50px 135px no-repeat
+}
+.proHeroGridV15{
+  position:relative;z-index:2;
+  display:grid;
+  grid-template-columns:1.35fr .72fr;
+  gap:70px;
+  align-items:center;
+  padding-bottom:38px
+}
+.proHeroCopyV15{padding:25px 0;text-align:right}
+.proKickerV15{
+  display:flex;align-items:center;gap:12px;
+  color:#bd8933;
+  font-size:14px;
+  font-weight:700
+}
+.proKickerV15 span{display:block;width:44px;height:1px;background:#c49139}
+.proHeroCopyV15 h1{
+  margin:12px 0 16px;
+  color:#064b45;
+  font-size:59px;
+  line-height:1.55;
+  letter-spacing:-1px;
+  font-weight:700
+}
+.proHeroCopyV15 p{
+  max-width:790px;
+  margin:0;
+  color:#52645d;
+  font-size:16.5px;
+  line-height:2.35
+}
+.proHeroActionsV15{display:flex;gap:13px;margin-top:25px}
+.proPrimaryBtnV15,.proSecondaryBtnV15{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:48px;padding:8px 24px;border-radius:8px;font-weight:700
+}
+.proPrimaryBtnV15{background:#07524d;color:#fff;box-shadow:0 8px 22px #06494425}
+.proSecondaryBtnV15{border:1.5px solid #6e9690;color:#07514c;background:#ffffff80}
+
+.proMessageCardV15{
+  position:relative;
+  text-align:center;
+  background:#fffefaee;
+  border:1px solid #dfcfb5;
+  border-radius:20px;
+  padding:28px 25px 24px;
+  box-shadow:0 18px 50px #42351f18
+}
+.proMessageIconV15{
+  width:63px;height:63px;margin:0 auto 13px;border-radius:50%;
+  display:grid;place-items:center;
+  background:#064c46;
+  border:4px solid #ead5a8;
+  box-shadow:0 7px 20px #163d3830
+}
+.proMessageIconV15 svg{width:31px;height:31px;fill:none;stroke:#f5e0b2;stroke-width:1.6}
+.proMessageCardV15 h2{font-size:23px;color:#0d4a44;margin:4px 0 10px}
+.proMessageCardV15 p{font-size:14.5px;line-height:2.15;color:#5e6b66;margin:0}
+.proVerseV15{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  margin-top:18px;padding-top:16px;
+  border-top:1px solid #e8dbc3;
+  color:#164d46
+}
+.proVerseV15 b{
+  font-family:var(--font-arabic),"Noto Sans Arabic",sans-serif;
+  font-size:18px;direction:rtl
+}
+.proVerseV15 span{color:#c99a49;font-size:30px;line-height:1}
+.proMessageCardV15 small{color:#8c816d;font-family:var(--font-clean);font-size:11px}
+
+.proPillarStripV15{
+  position:relative;z-index:3;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  background:#fffdf9;
+  border:1px solid #e6d9c4;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 15px 45px #25312d12;
+  transform:translateY(28px)
+}
+.proPillarStripV15 article{
+  position:relative;text-align:center;
+  padding:20px 17px 18px
+}
+.proPillarStripV15 article:not(:last-child):after{
+  content:"";position:absolute;left:0;top:18%;height:64%;width:1px;background:#e8d6ba
+}
+.proPillarIconV15{
+  width:48px;height:48px;margin:auto;border-radius:50%;
+  display:grid;place-items:center;background:#f5eddf
+}
+.proPillarIconV15 svg{width:27px;height:27px;fill:none;stroke:#0a5d54;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.proPillarStripV15 h3{color:#0b514a;font-size:18px;margin:6px 0 2px}
+.proPillarStripV15 p{color:#647069;font-size:12.5px;line-height:2;margin:0}
+
+/* About / forum section */
+.proAboutSectionV15{padding:95px 0 72px;background:#fff}
+.proSectionHeadV15{text-align:center;max-width:870px;margin:0 auto 33px}
+.proSectionHeadV15>span{color:#b98636;font-size:13px;font-weight:700}
+.proSectionHeadV15 h2{color:#074b45;font-size:37px;margin:5px 0}
+.proSectionHeadV15 p{color:#5b6963;font-size:15.5px;line-height:2.2}
+.proAboutBodyV15{
+  display:grid;
+  grid-template-columns:.52fr 1.48fr;
+  gap:34px;
+  align-items:end
+}
+.proScholarVisualV15{
+  position:relative;
+  min-height:240px;
+  border-radius:17px;
+  overflow:hidden;
+  background:linear-gradient(135deg,#6f674f,#c3a777 48%,#efe0bf)
+}
+.proScholarVisualV15:before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 78% 18%,#ffffff45,transparent 28%),linear-gradient(90deg,#0b252138,transparent)
+}
+.proBookStackV15{position:absolute;left:30px;bottom:42px;width:165px;height:105px}
+.proBookStackV15 i{
+  position:absolute;left:0;width:160px;height:25px;border-radius:3px;
+  background:linear-gradient(#283c35,#142a26);
+  border-bottom:4px solid #b98a42;
+  box-shadow:0 4px 8px #0004
+}
+.proBookStackV15 i:nth-child(1){bottom:0}
+.proBookStackV15 i:nth-child(2){bottom:30px;left:9px;width:150px;background:#50442c}
+.proBookStackV15 i:nth-child(3){bottom:60px;left:2px;width:158px;background:#233c32}
+.proInkV15{
+  position:absolute;right:45px;bottom:37px;width:58px;height:58px;border-radius:50% 50% 40% 40%;
+  background:linear-gradient(#49301e,#160f0b);box-shadow:0 6px 16px #0005
+}
+.proQuillV15{
+  position:absolute;right:66px;bottom:77px;width:9px;height:145px;
+  background:#e8dbb7;border-radius:100% 0;
+  transform:rotate(-25deg);transform-origin:bottom
+}
+.proQuillV15:after{
+  content:"";position:absolute;top:0;left:-18px;width:45px;height:100px;
+  border-radius:80% 0 80% 0;background:linear-gradient(90deg,#f5ebce,#d6c28f);
+  clip-path:polygon(50% 0,100% 36%,62% 100%,53% 44%,45% 100%,0 34%)
+}
+.proForumsV15{min-width:0}
+.proForumsTitleV15{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:15px}
+.proForumsTitleV15 span{width:36px;height:1px;background:#c89440}
+.proForumsTitleV15 h3{color:#0c514a;font-size:24px;margin:0}
+.proForumGridV15{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.proForumCardV15{
+  display:grid;
+  grid-template-columns:82px 1fr;
+  gap:18px;
+  align-items:center;
+  padding:22px;
+  border:1px solid #e1d4bf;
+  border-radius:17px;
+  background:linear-gradient(135deg,#fffdfa,#f9f3e8);
+  transition:.22s
+}
+.proForumCardV15:hover{transform:translateY(-3px);box-shadow:0 13px 35px #14342f12}
+.proForumBadgeV15{
+  width:76px;height:76px;border-radius:16px;display:grid;place-items:center;
+  box-shadow:0 7px 18px #153a3525
+}
+.proForumBadgeV15.gold{background:linear-gradient(145deg,#d6a752,#b67d29)}
+.proForumBadgeV15.green{background:linear-gradient(145deg,#07564e,#063a3a)}
+.proForumBadgeV15 svg{width:39px;height:39px;fill:none;stroke:#fff8e8;stroke-width:1.5}
+.proForumCardV15 span{color:#b27d2e;font-size:11px;font-family:var(--font-clean);font-weight:700}
+.proForumCardV15 h3{color:#0b5049;font-size:23px;margin:0}
+.proForumCardV15 p{color:#667169;font-size:13.5px;line-height:2;margin:4px 0}
+.proForumCardV15 b{color:#07524c;font-size:12.5px}
+
+/* Latest updates */
+.proUpdatesSectionV15{padding:70px 0;background:#f8f3e9;border-top:1px solid #eee1cd}
+.proSectionHeadV15.compact{margin-bottom:25px}
+.proUpdatesGridV15{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.proUpdateCardV15{
+  position:relative;display:block;
+  background:#fff;border:1px solid #e5d9c6;border-radius:17px;padding:23px;
+  transition:.2s
+}
+.proUpdateCardV15:hover{transform:translateY(-3px);box-shadow:0 13px 35px #14342f12}
+.proUpdateTypeV15{display:inline-block;color:#a77831;background:#fbf1df;border-radius:999px;padding:3px 9px;font-size:11px}
+.proUpdateCardV15 h3{color:#0a4e47;font-size:21px;margin:7px 0 3px}
+.proUpdateCardV15 p{color:#68736c;font-size:13.5px;line-height:2}
+.proUpdateCardV15>b{color:#07524c;font-size:12px}
+.proUpdateCardV15.activity{border-top:3px solid #c7953e}
+
+/* Footer */
+.siteFooterV15{
+  background:linear-gradient(100deg,#063f3d,#074d49 55%,#063538);
+  color:#fff;
+  border-top:3px solid #c89945
+}
+.footerTopV15{
+  display:grid;
+  grid-template-columns:1.4fr .65fr .65fr .9fr;
+  gap:40px;
+  padding:42px 0 32px
+}
+.footerBrandHeadV15{display:flex;align-items:center;gap:12px}
+.footerBrandHeadV15 img{width:65px;height:65px}
+.footerBrandHeadV15 h3{color:#fff9ed;font-size:25px;margin:0}
+.footerBrandHeadV15 span{color:#d5d7cd;font-size:11px}
+.footerBrandV15>p{color:#d7dfdb;font-size:13.5px;line-height:2.1;max-width:380px}
+.footerSocialV15{display:flex;gap:9px;margin-top:14px}
+.footerSocialV15 span{
+  width:34px;height:34px;border:1px solid #ffffff3d;border-radius:50%;
+  display:grid;place-items:center;color:#fff
+}
+.footerLinksV15 h4,.footerNewsletterV15 h4{color:#f7e5bd;font-size:18px;margin:0 0 9px}
+.footerLinksV15{display:grid;align-content:start;gap:3px}
+.footerLinksV15 a{color:#dbe3df;font-size:13px}
+.footerLinksV15 a:hover{color:#efc775}
+.footerNewsletterV15 p{color:#d6dfda;font-size:13px;line-height:2}
+.footerContactBtnV15{
+  display:inline-block;margin-top:7px;padding:8px 17px;border-radius:7px;
+  background:#c9943d;color:#173b37;font-weight:700
+}
+.footerBottomV15{
+  border-top:1px solid #ffffff20;
+  padding:10px 0;
+  text-align:center;
+  color:#c9d2cd;
+  font-size:11.5px
+}
+
+/* Desktop compression */
+@media(max-width:1180px){
+  .proHeadInnerV15{gap:16px}
+  .proDesktopNavV15 a{font-size:13px;padding-inline:6px}
+  .proCtaV15{padding-inline:14px}
+  .proHeroCopyV15 h1{font-size:50px}
+}
+
+/* Tablet + phone: mobile font stays Noto Nastaliq Urdu from next/font */
+@media(max-width:980px){
+  .proHeadInnerV15{grid-template-columns:1fr auto;min-height:80px}
+  .proDesktopNavV15,.proSearchV15,.proCtaV15{display:none}
+  .proMenuBtnV15{display:block}
+  .proBrandV15 img{width:55px;height:55px}
+  .proBrandV15 strong{font-size:21px}
+  .proHeroGridV15{grid-template-columns:1fr;gap:25px}
+  .proHeroCopyV15{text-align:center}
+  .proKickerV15{justify-content:center}
+  .proHeroCopyV15 p{margin-inline:auto}
+  .proHeroActionsV15{justify-content:center}
+  .proMessageCardV15{max-width:650px;margin:auto}
+  .proPillarStripV15{grid-template-columns:repeat(2,1fr)}
+  .proPillarStripV15 article:last-child{grid-column:1/-1}
+  .proAboutBodyV15{grid-template-columns:1fr}
+  .proScholarVisualV15{max-width:620px;width:100%;margin:auto}
+  .footerTopV15{grid-template-columns:1.2fr 1fr 1fr}
+  .footerNewsletterV15{grid-column:1/-1}
+}
+@media(max-width:680px){
+  html[lang="ur"] body{
+    font-family:var(--font-urdu),"Noto Nastaliq Urdu",serif!important
+  }
+  .proHeroV15{padding-top:34px}
+  .proHeroPatternV15{width:55%;opacity:.25}
+  .proHeroCopyV15 h1{
+    font-size:37px;
+    line-height:1.72;
+    letter-spacing:0
+  }
+  .proHeroCopyV15 p{font-size:15px;line-height:2.3}
+  .proHeroActionsV15{flex-direction:column;align-items:stretch}
+  .proPrimaryBtnV15,.proSecondaryBtnV15{width:100%}
+  .proMessageCardV15{padding:24px 18px}
+  .proPillarStripV15{grid-template-columns:1fr;transform:translateY(20px)}
+  .proPillarStripV15 article:last-child{grid-column:auto}
+  .proPillarStripV15 article:not(:last-child):after{
+    left:15%;right:15%;top:auto;bottom:0;width:70%;height:1px
+  }
+  .proAboutSectionV15{padding-top:70px}
+  .proSectionHeadV15 h2{font-size:31px}
+  .proSectionHeadV15 p{font-size:14.5px}
+  .proForumGridV15{grid-template-columns:1fr}
+  .proForumCardV15{grid-template-columns:68px 1fr;padding:17px}
+  .proForumBadgeV15{width:62px;height:62px}
+  .proForumBadgeV15 svg{width:32px;height:32px}
+  .proScholarVisualV15{min-height:210px}
+  .proUpdatesGridV15{grid-template-columns:1fr}
+  .footerTopV15{grid-template-columns:1fr;gap:27px}
+  .footerNewsletterV15{grid-column:auto}
+}

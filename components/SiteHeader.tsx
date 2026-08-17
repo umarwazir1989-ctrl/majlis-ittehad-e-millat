@@ -6,14 +6,12 @@ import {useEffect,useState} from "react";
 
 const nav=[
   ["صفحہ اول","/"],
-  ["تعارف","/about"],
+  ["مجلس کا تعارف","/about"],
   ["وژن و اہداف","/vision"],
   ["مجلس بزرگان","/leadership"],
   ["مجلس مشاورت","/advisory"],
-  ["مضامین","/articles"],
+  ["افکار و مباحث","/articles"],
   ["سرگرمیاں","/activities"],
-  ["تلاش","/search"],
-  ["رکنیت","/membership"],
 ];
 
 export default function SiteHeader(){
@@ -30,28 +28,29 @@ export default function SiteHeader(){
 
   return <>
     <a className="skipLink" href="#main-content">مرکزی مواد پر جائیں</a>
-    <div className="top">اختلاف میں احترام • مشترکات میں تعاون • ملی مسائل میں ذمہ دارانہ رہنمائی</div>
 
-    <header className="siteHeader">
-      <div className="wrap headV12">
-        <Link className="brand brandV12" href="/" aria-label="مجلس اتحادِ ملت — صفحہ اول">
-          <img className="brandLogoImage" src="/brand/majlis-logo.svg" alt="" aria-hidden="true"/>
-          <span className="brandText">
+    <header className="proHeaderV15">
+      <div className="wrap proHeadInnerV15">
+        <Link className="proBrandV15" href="/" aria-label="مجلس اتحادِ ملت — صفحہ اول">
+          <img src="/brand/majlis-logo.svg" alt="" aria-hidden="true"/>
+          <span>
             <strong>مجلس اتحادِ ملت</strong>
-            <small>علمی و مشاورتی پلیٹ فارم</small>
+            <small>فکر میں ہم آہنگی، عمل میں وحدت</small>
           </span>
         </Link>
 
-        <nav className="desktopNav desktopNavV12" aria-label="مرکزی مینیو">
+        <nav className="proDesktopNavV15" aria-label="مرکزی مینیو">
           {nav.map(([name,href])=>
             <Link className={active(href)?"active":""} key={href} href={href}>{name}</Link>
           )}
         </nav>
 
-        <div className="headerActions">
-          <Link className="headerSearch" href="/search" aria-label="تلاش">⌕</Link>
-          <Link className="cta headerCta" href="/contact">ہم سے رابطہ کریں</Link>
-          <button type="button" className="menuButton" aria-label={open?"مینیو بند کریں":"مینیو کھولیں"} aria-expanded={open} onClick={()=>setOpen(v=>!v)}>
+        <div className="proActionsV15">
+          <Link className="proSearchV15" href="/search" aria-label="تلاش">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 5 5"/></svg>
+          </Link>
+          <Link className="proCtaV15" href="/membership">رکنیت اختیار کریں</Link>
+          <button type="button" className="proMenuBtnV15" aria-expanded={open} aria-label={open?"مینیو بند کریں":"مینیو کھولیں"} onClick={()=>setOpen(v=>!v)}>
             <span></span><span></span><span></span>
           </button>
         </div>
@@ -59,19 +58,21 @@ export default function SiteHeader(){
     </header>
 
     {open&&<div className="mobileOverlay" onClick={()=>setOpen(false)} aria-hidden="true"></div>}
-    <aside className={`mobileMenu ${open?"open":""}`} aria-hidden={!open}>
-      <div className="mobileMenuHead">
-        <div className="mobileBrand">
+    <aside className={`proMobileMenuV15 ${open?"open":""}`} aria-hidden={!open}>
+      <div className="proMobileHeadV15">
+        <div className="proMobileBrandV15">
           <img src="/brand/majlis-logo.svg" alt=""/>
           <span><strong>مجلس اتحادِ ملت</strong><small>مرکزی مینیو</small></span>
         </div>
         <button type="button" onClick={()=>setOpen(false)} aria-label="مینیو بند کریں">×</button>
       </div>
-      <div className="mobileNav" role="navigation" aria-label="موبائل مینیو">
+      <div className="proMobileLinksV15">
         {nav.map(([name,href])=>
           <Link className={active(href)?"active":""} key={href} href={href}><span>{name}</span><b>←</b></Link>
         )}
-        <Link className="mobileContact" href="/contact">ہم سے رابطہ کریں</Link>
+        <Link href="/search"><span>تلاش</span><b>←</b></Link>
+        <Link href="/contact"><span>ہم سے رابطہ کریں</span><b>←</b></Link>
+        <Link className="proMobileCtaV15" href="/membership">رکنیت اختیار کریں</Link>
       </div>
     </aside>
   </>
