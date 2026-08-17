@@ -11,59 +11,72 @@ async function requireAdmin(){
   if(!profile||profile.role!=="admin") throw new Error("Unauthorized");
   return supabase;
 }
+const str=(fd:FormData,key:string)=>String(fd.get(key)||"").trim();
 
 export async function logout(){
-  const supabase=await createClient();
-  await supabase.auth.signOut();
-  redirect("/admin/login");
+  const s=await createClient(); await s.auth.signOut(); redirect("/admin/login");
 }
 
-export async function createArticle(formData:FormData){
-  const supabase=await requireAdmin();
-  const payload={
-    title:String(formData.get("title")||"").trim(),
-    slug:String(formData.get("slug")||"").trim(),
-    category:String(formData.get("category")||"").trim(),
-    author:String(formData.get("author")||"مجلس اتحادِ ملت").trim(),
-    excerpt:String(formData.get("excerpt")||"").trim(),
-    content:String(formData.get("content")||"").trim(),
-    status:String(formData.get("status")||"draft")
-  };
-  const {error}=await supabase.from("articles").insert(payload);
-  if(error) throw new Error(error.message);
-  revalidatePath("/admin/articles");
-  revalidatePath("/articles");
-  redirect("/admin/articles");
+export async function createArticle(fd:FormData){
+  const s=await requireAdmin();
+  const payload={title:str(fd,"title"),slug:str(fd,"slug"),category:str(fd,"category"),
+    author:str(fd,"author")||"مجلس اتحادِ ملت",excerpt:str(fd,"excerpt"),
+    content:str(fd,"content"),status:str(fd,"status")||"draft",image_url:str(fd,"image_url")||null};
+  const {error}=await s.from("articles").insert(payload); if(error) throw new Error(error.message);
+  revalidatePath("/articles"); revalidatePath("/admin/articles"); redirect("/admin/articles");
 }
-
+export async function updateArticle(id:string,fd:FormData){
+  const s=await requireAdmin();
+  const payload={title:str(fd,"title"),slug:str(fd,"slug"),category:str(fd,"category"),
+    author:str(fd,"author"),excerpt:str(fd,"excerpt"),content:str(fd,"content"),
+    status:str(fd,"status"),image_url:str(fd,"image_url")||null,updated_at:new Date().toISOString()};
+  const {error}=await s.from("articles").update(payload).eq("id",id); if(error) throw new Error(error.message);
+  revalidatePath("/articles"); revalidatePath("/admin/articles"); redirect("/admin/articles");
+}
 export async function deleteArticle(id:string){
-  const supabase=await requireAdmin();
-  const {error}=await supabase.from("articles").delete().eq("id",id);
-  if(error) throw new Error(error.message);
-  revalidatePath("/admin/articles"); revalidatePath("/articles");
+  const s=await requireAdmin(); const {error}=await s.from("articles").delete().eq("id",id);
+  if(error) throw new Error(error.message); revalidatePath("/articles"); revalidatePath("/admin/articles");
 }
 
-export async function createActivity(formData:FormData){
-  const supabase=await requireAdmin();
-  const payload={
-    title:String(formData.get("title")||"").trim(),
-    slug:String(formData.get("slug")||"").trim(),
-    type:String(formData.get("type")||"").trim(),
-    event_date:String(formData.get("event_date")||"").trim()||null,
-    location:String(formData.get("location")||"").trim(),
-    excerpt:String(formData.get("excerpt")||"").trim(),
-    content:String(formData.get("content")||"").trim(),
-    status:String(formData.get("status")||"draft")
-  };
-  const {error}=await supabase.from("activities").insert(payload);
-  if(error) throw new Error(error.message);
-  revalidatePath("/admin/activities"); revalidatePath("/activities");
-  redirect("/admin/activities");
+export async function createActivity(fd:FormData){
+  const s=await requireAdmin();
+  const payload={title:str(fd,"title"),slug:str(fd,"slug"),type:str(fd,"type"),
+    event_date:str(fd,"event_date")||null,location:str(fd,"location"),excerpt:str(fd,"excerpt"),
+    content:str(fd,"content"),status:str(fd,"status")||"draft",image_url:str(fd,"image_url")||null};
+  const {error}=await s.from("activities").insert(payload); if(error) throw new Error(error.message);
+  revalidatePath("/activities"); revalidatePath("/admin/activities"); redirect("/admin/activities");
 }
-
+export async function updateActivity(id:string,fd:FormData){
+  const s=await requireAdmin();
+  const payload={title:str(fd,"title"),slug:str(fd,"slug"),type:str(fd,"type"),
+    event_date:str(fd,"event_date")||null,location:str(fd,"location"),excerpt:str(fd,"excerpt"),
+    content:str(fd,"content"),status:str(fd,"status"),image_url:str(fd,"image_url")||null,
+    updated_at:new Date().toISOString()};
+  const {error}=await s.from("activities").update(payload).eq("id",id); if(error) throw new Error(error.message);
+  revalidatePath("/activities"); revalidatePath("/admin/activities"); redirect("/admin/activities");
+}
 export async function deleteActivity(id:string){
-  const supabase=await requireAdmin();
-  const {error}=await supabase.from("activities").delete().eq("id",id);
-  if(error) throw new Error(error.message);
-  revalidatePath("/admin/activities"); revalidatePath("/activities");
+  const s=await requireAdmin(); const {error}=await s.from("activities").delete().eq("id",id);
+  if(error) throw new Error(error.message); revalidatePath("/activities"); revalidatePath("/admin/activities");
+}
+
+export async function createPerson(fd:FormData){
+  const s=await requireAdmin();
+  const payload={name:str(fd,"name"),slug:str(fd,"slug"),council:str(fd,"council"),
+    designation:str(fd,"designation"),summary:str(fd,"summary"),bio:str(fd,"bio"),
+    image_url:str(fd,"image_url")||null};
+  const {error}=await s.from("people").insert(payload); if(error) throw new Error(error.message);
+  revalidatePath("/leadership"); revalidatePath("/advisory"); revalidatePath("/admin/people"); redirect("/admin/people");
+}
+export async function updatePerson(id:string,fd:FormData){
+  const s=await requireAdmin();
+  const payload={name:str(fd,"name"),slug:str(fd,"slug"),council:str(fd,"council"),
+    designation:str(fd,"designation"),summary:str(fd,"summary"),bio:str(fd,"bio"),
+    image_url:str(fd,"image_url")||null};
+  const {error}=await s.from("people").update(payload).eq("id",id); if(error) throw new Error(error.message);
+  revalidatePath("/leadership"); revalidatePath("/advisory"); revalidatePath("/admin/people"); redirect("/admin/people");
+}
+export async function deletePerson(id:string){
+  const s=await requireAdmin(); const {error}=await s.from("people").delete().eq("id",id);
+  if(error) throw new Error(error.message); revalidatePath("/leadership"); revalidatePath("/advisory"); revalidatePath("/admin/people");
 }
