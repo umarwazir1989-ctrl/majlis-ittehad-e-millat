@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">مجلس اتحادِ ملت</title>
+  <desc id="desc">سبز اور سنہری اسلامی طرز کا علمی و وحدتی نشان</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f4b3d"/>
+      <stop offset="1" stop-color="#142f43"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e3c07a"/>
+      <stop offset="1" stop-color="#b58a43"/>
+    </linearGradient>
+  </defs>
+
+  <path d="M256 36c58 54 103 81 143 119v156c0 88-64 137-143 165-79-28-143-77-143-165V155c40-38 85-65 143-119z"
+        fill="url(#bg)" stroke="url(#gold)" stroke-width="18"/>
+  <path d="M256 70c49 44 84 66 113 94v143c0 67-46 105-113 132-67-27-113-65-113-132V164c29-28 64-50 113-94z"
+        fill="none" stroke="#d8b36f" stroke-opacity=".48" stroke-width="5"/>
+
+  <!-- open book -->
+  <path d="M145 319c43-12 78-7 111 21v55c-34-22-70-29-111-15z" fill="#fffdf8"/>
+  <path d="M367 319c-43-12-78-7-111 21v55c34-22 70-29 111-15z" fill="#fffdf8"/>
+  <path d="M256 341v55" stroke="#b58a43" stroke-width="8" stroke-linecap="round"/>
+
+  <!-- three united figures -->
+  <circle cx="256" cy="257" r="25" fill="url(#gold)"/>
+  <circle cx="202" cy="276" r="18" fill="#fffdf8"/>
+  <circle cx="310" cy="276" r="18" fill="#fffdf8"/>
+  <path d="M219 324c4-34 17-49 37-49s33 15 37 49" fill="none" stroke="url(#gold)" stroke-width="22" stroke-linecap="round"/>
+  <path d="M166 319c2-24 14-35 36-35 12 0 22 5 30 15" fill="none" stroke="#fffdf8" stroke-width="16" stroke-linecap="round"/>
+  <path d="M346 319c-2-24-14-35-36-35-12 0-22 5-30 15" fill="none" stroke="#fffdf8" stroke-width="16" stroke-linecap="round"/>
+
+  <!-- stylized Arabic meem / unity line -->
+  <path d="M187 202c20-40 50-61 90-61 28 0 51 12 69 35-20 0-35 6-45 19-12-12-25-18-40-18-22 0-39 10-52 30z"
+        fill="url(#gold)"/>
+  <circle cx="337" cy="169" r="8" fill="#e3c07a"/>
+</svg>
