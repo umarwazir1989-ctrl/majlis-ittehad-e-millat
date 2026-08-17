@@ -1,2 +1,29 @@
-import Link from "next/link";
-export default function Page(){return <main><section className="pageHero"><div className="wrap"><span className="eyebrow">ہم کون ہیں؟</span><h1>مجلس کا تعارف</h1><p>مجلس اتحادِ ملت — اختلاف میں احترام، مشترکات میں تعاون اور ملی مسائل میں ذمہ دارانہ رہنمائی۔</p></div></section><section className="section"><div className="wrap"><div className="heading"><h2>ایک علمی و مشاورتی فورم</h2><p>مختلف مکاتبِ فکر کے اہلِ علم، دانشوروں اور قومی شخصیات کے درمیان رابطہ، مکالمہ اور مشترکہ مسائل میں تعاون کا پلیٹ فارم۔</p></div><div className="g2"><article className="card"><h3>مجلس کیا ہے؟</h3><p>علمی رابطے، مہذب مکالمے، فکری رہنمائی اور مشترکہ قومی و ملی مسائل میں تعاون کا منظم فورم۔</p></article><article className="card"><h3>مجلس کیا نہیں ہے؟</h3><p>یہ نیا فرقہ، مسلک، سیاسی جماعت یا انتخابی اتحاد نہیں۔</p></article></div></div></section><div className="wrap"><Link className="back" href="/">← صفحۂ اول</Link></div></main>}
+import {getSitePage} from "../../lib/content/site-pages";
+export const dynamic="force-dynamic";
+export const metadata={title:"تعارف",description:"مجلس اتحادِ ملت کا تعارف، بنیادی شناخت اور علمی و مشاورتی سمت۔"};
+
+export default async function AboutPage(){
+  const page=await getSitePage("about");
+  if(!page)return null;
+
+  return <main>
+    <section className="pageHero sourcePageHero"><div className="wrap">
+      <span className="eyebrow">{page.eyebrow}</span>
+      <h1>{page.title}</h1>
+      <p>{page.summary}</p>
+    </div></section>
+
+    <section className="section"><div className="wrap">
+      <div className="sourceContentGrid">
+        {page.sections.map((section,i)=><article className="sourceContentCard" key={section.title}>
+          <span className="sourceNumber">{String(i+1).padStart(2,"0")}</span>
+          <h2>{section.title}</h2>
+          <p>{section.body}</p>
+        </article>)}
+      </div>
+      <div className="sourceIntegrityNote">
+        یہ تعارف فراہم کردہ مجلس کے بنیادی وژن و تعارفی مواد کی بنیاد پر مرتب ہے؛ غیر مصدقہ تاریخی یا شخصی تفصیلات شامل نہیں کی گئیں۔
+      </div>
+    </div></section>
+  </main>
+}

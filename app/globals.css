@@ -834,3 +834,122 @@ body{
   .launchPanelHead h2{font-size:25px}
   .launchPanelHead img{width:62px;height:62px}
 }
+
+/* Phase 13 — source-grounded content + migration */
+.sourcePageHero{
+  background:
+    radial-gradient(circle at 16% 45%,#ead8b650 0,transparent 28%),
+    linear-gradient(120deg,#f9f2e5,#edf5f0)
+}
+.visionSourceHero{
+  background:
+    radial-gradient(circle at 84% 35%,#d8e9e050 0,transparent 30%),
+    linear-gradient(120deg,#eef5f1,#faf2e4)
+}
+.sourceContentGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px
+}
+.sourceContentCard{
+  position:relative;
+  background:#fff;
+  border:1px solid var(--b);
+  border-radius:22px;
+  padding:30px;
+  overflow:hidden
+}
+.sourceContentCard h2{color:var(--n);font-size:26px;margin:4px 0 10px}
+.sourceContentCard p{color:var(--m);font-size:16px;line-height:2.15}
+.sourceNumber{
+  position:absolute;
+  left:18px;
+  top:10px;
+  color:#dbc39b;
+  font-size:32px;
+  font-weight:900
+}
+.sourceIntegrityNote{
+  margin-top:28px;
+  padding:18px 22px;
+  background:#fff8e8;
+  border:1px solid #ead5a9;
+  border-right:5px solid var(--gold);
+  border-radius:14px;
+  color:#695b43
+}
+.visionTimeline{display:grid;gap:18px;max-width:950px;margin:auto}
+.visionTimelineItem{
+  display:grid;
+  grid-template-columns:72px 1fr;
+  gap:20px;
+  align-items:stretch
+}
+.visionTimelineNo{
+  width:72px;height:72px;border-radius:50%;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--g),var(--n));
+  color:#e7c781;font-weight:900;
+  border:5px solid #f5ecdc
+}
+.visionTimelineBody{
+  background:#fff;
+  border:1px solid var(--b);
+  border-radius:18px;
+  padding:22px 25px
+}
+.visionTimelineBody h2{margin:0;color:var(--n);font-size:24px}
+.visionTimelineBody p{color:var(--m);margin:5px 0 0}
+.contentAdminStack{display:grid;gap:28px}
+.contentAdminCard{
+  display:grid;gap:14px;
+  background:#fff;border:1px solid var(--b);
+  border-radius:22px;padding:28px
+}
+.contentAdminHead{display:flex;align-items:center;justify-content:space-between;gap:18px}
+.contentAdminHead h2{margin:2px 0;color:var(--n);font-size:28px}
+.contentAdminHead>a{color:var(--g);font-weight:900}
+.contentAdminCard label{display:grid;gap:6px;color:var(--n);font-weight:800}
+.contentAdminCard input,.contentAdminCard textarea{
+  width:100%;border:1px solid #d9d0c0;border-radius:11px;padding:11px 13px;font:inherit
+}
+.contentAdminCard textarea{min-height:100px}
+.contentSectionsEditor{display:grid;gap:14px}
+.contentSectionEdit{
+  display:grid;grid-template-columns:.7fr 1.3fr;gap:14px;
+  padding:15px;background:#faf7f0;border:1px solid #ece1cf;border-radius:14px
+}
+.contentAdminCard>button{border:0;font:inherit;cursor:pointer;justify-self:start}
+.migrationSummary{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:25px
+}
+.migrationSummary>div{
+  background:#fff;border:1px solid var(--b);
+  border-radius:18px;padding:22px;text-align:center
+}
+.migrationSummary strong{display:block;color:var(--g);font-size:34px}
+.migrationSummary span{color:var(--m)}
+.migrationPanel{background:#fff;border:1px solid var(--b);border-radius:20px;padding:24px}
+.migrationPanel h2{color:var(--n);font-size:25px}
+.migrationPerson{
+  display:flex;justify-content:space-between;gap:14px;
+  padding:10px 0;border-bottom:1px solid #eee6da
+}
+.migrationPerson:last-child{border-bottom:0}
+.migrationPerson span{color:#43534c}
+.migrationPerson b{font-size:11px;padding:3px 8px;border-radius:999px;height:max-content}
+.migrationPerson .done{background:#e8f5ec;color:#28603c}
+.migrationPerson .pending{background:#fff2df;color:#8a5b31}
+@media(max-width:850px){
+  .sourceContentGrid{grid-template-columns:1fr}
+  .migrationSummary{grid-template-columns:1fr 1fr}
+  .contentSectionEdit{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+  .visionTimelineItem{grid-template-columns:50px 1fr;gap:12px}
+  .visionTimelineNo{width:50px;height:50px;font-size:12px}
+  .visionTimelineBody{padding:18px}
+  .contentAdminHead{align-items:flex-start;flex-direction:column}
+  .migrationSummary{grid-template-columns:1fr}
+  .migrationPerson{align-items:flex-start;flex-direction:column}
+}

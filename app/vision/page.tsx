@@ -1,2 +1,28 @@
-import Link from "next/link";
-export default function Page(){return <main><section className="pageHero"><div className="wrap"><span className="eyebrow">ہماری سمت</span><h1>وژن، اہداف اور حکمتِ عملی</h1><p>مجلس اتحادِ ملت — اختلاف میں احترام، مشترکات میں تعاون اور ملی مسائل میں ذمہ دارانہ رہنمائی۔</p></div></section><section className="section"><div className="wrap"><div className="heading"><h2>علمی وقار کے ساتھ ملی ہم آہنگی</h2></div><div className="g3"><article className="card"><h3>داخلی ہم آہنگی</h3><p>مشترکات اور آدابِ اختلاف کا فروغ۔</p></article><article className="card"><h3>فکری دفاع</h3><p>جدید فکری چیلنجز کے مقابلے میں علمی شعور۔</p></article><article className="card"><h3>ملی موقف</h3><p>قومی و عالمی مسائل پر متوازن رہنمائی۔</p></article></div></div></section><div className="wrap"><Link className="back" href="/">← صفحۂ اول</Link></div></main>}
+import {getSitePage} from "../../lib/content/site-pages";
+export const dynamic="force-dynamic";
+export const metadata={title:"وژن و اہداف",description:"مجلس اتحادِ ملت کے وژن، بنیادی ستون اور عملی حکمتِ عملی۔"};
+
+export default async function VisionPage(){
+  const page=await getSitePage("vision");
+  if(!page)return null;
+
+  return <main>
+    <section className="pageHero sourcePageHero visionSourceHero"><div className="wrap">
+      <span className="eyebrow">{page.eyebrow}</span>
+      <h1>{page.title}</h1>
+      <p>{page.summary}</p>
+    </div></section>
+
+    <section className="section"><div className="wrap">
+      <div className="visionTimeline">
+        {page.sections.map((section,i)=><article className="visionTimelineItem" key={section.title}>
+          <div className="visionTimelineNo">{String(i+1).padStart(2,"0")}</div>
+          <div className="visionTimelineBody">
+            <h2>{section.title}</h2>
+            <p>{section.body}</p>
+          </div>
+        </article>)}
+      </div>
+    </div></section>
+  </main>
+}

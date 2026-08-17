@@ -3,7 +3,7 @@ import {createClient,isSupabaseConfigured} from "../../lib/supabase/server";
 import {logout} from "./actions";
 
 export default async function AdminPage(){
-  if(!isSupabaseConfigured()) return <main className="adminPage"><section className="adminHero"><div className="wrap"><h1>انتظامی ڈیش بورڈ</h1><p>Supabase configure کرنے کے بعد dashboard فعال ہوگا۔</p></div></section></main>;
+  if(!isSupabaseConfigured())return <main className="adminPage"><section className="adminHero"><div className="wrap"><h1>انتظامی ڈیش بورڈ</h1><p>Supabase configure کرنے کے بعد dashboard فعال ہوگا۔</p></div></section></main>;
 
   const s=await createClient();
   const [{count:a},{count:e},{count:p},{count:m},{count:c}]=await Promise.all([
@@ -16,10 +16,9 @@ export default async function AdminPage(){
 
   return <main className="adminPage">
     <section className="adminHero"><div className="wrap adminHeroRow">
-      <div><span className="eyebrow">Phase 12</span><h1>انتظامی ڈیش بورڈ</h1><p>مواد، شخصیات، درخواستیں، رابطہ پیغامات اور launch readiness ایک جگہ۔</p></div>
+      <div><span className="eyebrow">Phase 13</span><h1>انتظامی ڈیش بورڈ</h1><p>مواد، تنظیمی شخصیات، درخواستیں اور source migration ایک جگہ۔</p></div>
       <form action={logout}><button className="adminLogout">لاگ آؤٹ</button></form>
     </div></section>
-
     <section className="section"><div className="wrap">
       <div className="adminStats phase9Stats">
         <div><strong>{a||0}</strong><span>مضامین</span></div>
@@ -28,8 +27,9 @@ export default async function AdminPage(){
         <div><strong>{m||0}</strong><span>رکنیت درخواستیں</span></div>
         <div><strong>{c||0}</strong><span>پیغامات</span></div>
       </div>
-
       <div className="adminModules">
+        <Link href="/admin/content"><b>بنیادی صفحات</b><span>تعارف و وژن ←</span></Link>
+        <Link href="/admin/migration"><b>Source Migration</b><span>اصل مواد کی منتقلی ←</span></Link>
         <Link href="/admin/articles"><b>مضامین</b><span>تحریری مواد ←</span></Link>
         <Link href="/admin/activities"><b>سرگرمیاں</b><span>پروگرام ←</span></Link>
         <Link href="/admin/people"><b>شخصیات</b><span>مجالس ←</span></Link>
