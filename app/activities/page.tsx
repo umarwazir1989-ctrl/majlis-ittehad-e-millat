@@ -1,2 +1,3 @@
-import ActivityExplorer from "../../components/ActivityExplorer";
-export default function Page(){return <main><section className="pageHero contentHero"><div className="wrap"><span className="eyebrow">عملی پیش رفت</span><h1>سرگرمیاں اور پروگرام</h1><p>سرگرمیوں کو نوعیت اور مطلوبہ الفاظ کے مطابق تلاش کریں۔</p></div></section><section className="section"><div className="wrap"><ActivityExplorer/><div className="sourceNote">موجودہ سرگرمیاں demonstration/dummy ہیں؛ اصل پروگرام بعد میں شامل ہوں گے۔</div></div></section></main>}
+import ActivityExplorer from "../../components/ActivityExplorer";import {getPublicActivities} from "../../lib/content/public";
+export const dynamic="force-dynamic";
+export default async function Page(){const activities=await getPublicActivities();return <main><section className="pageHero contentHero"><div className="wrap"><span className="eyebrow">عملی پیش رفت</span><h1>سرگرمیاں اور پروگرام</h1><p>Admin سے شائع ہونے والی سرگرمیاں خودکار طور پر یہاں نظر آئیں گی۔</p></div></section><section className="section"><div className="wrap"><ActivityExplorer activities={activities}/></div></section></main>}
