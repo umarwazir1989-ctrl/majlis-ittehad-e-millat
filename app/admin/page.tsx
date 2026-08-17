@@ -16,9 +16,10 @@ export default async function AdminPage(){
 
   return <main className="adminPage">
     <section className="adminHero"><div className="wrap adminHeroRow">
-      <div><span className="eyebrow">Phase 13</span><h1>انتظامی ڈیش بورڈ</h1><p>مواد، تنظیمی شخصیات، درخواستیں اور source migration ایک جگہ۔</p></div>
+      <div><span className="eyebrow">Phase 14</span><h1>انتظامی ڈیش بورڈ</h1><p>اصل مواد، verification، backup اور production readiness ایک جگہ۔</p></div>
       <form action={logout}><button className="adminLogout">لاگ آؤٹ</button></form>
     </div></section>
+
     <section className="section"><div className="wrap">
       <div className="adminStats phase9Stats">
         <div><strong>{a||0}</strong><span>مضامین</span></div>
@@ -27,15 +28,18 @@ export default async function AdminPage(){
         <div><strong>{m||0}</strong><span>رکنیت درخواستیں</span></div>
         <div><strong>{c||0}</strong><span>پیغامات</span></div>
       </div>
+
       <div className="adminModules">
         <Link href="/admin/content"><b>بنیادی صفحات</b><span>تعارف و وژن ←</span></Link>
         <Link href="/admin/migration"><b>Source Migration</b><span>اصل مواد کی منتقلی ←</span></Link>
+        <Link href="/admin/content-audit"><b>Final Content Audit</b><span>Verification & completeness ←</span></Link>
+        <Link href="/admin/export"><b>Backup / Export</b><span>JSON backup ←</span></Link>
         <Link href="/admin/articles"><b>مضامین</b><span>تحریری مواد ←</span></Link>
         <Link href="/admin/activities"><b>سرگرمیاں</b><span>پروگرام ←</span></Link>
         <Link href="/admin/people"><b>شخصیات</b><span>مجالس ←</span></Link>
         <Link href="/admin/memberships"><b>رکنیت درخواستیں</b><span>موصولہ فارم ←</span></Link>
         <Link href="/admin/messages"><b>رابطہ پیغامات</b><span>Inbox ←</span></Link>
-        <Link href="/admin/launch"><b>Launch Audit</b><span>حتمی چیک لسٹ ←</span></Link>
+        <Link href="/admin/launch"><b>Launch Audit</b><span>Environment checklist ←</span></Link>
       </div>
     </div></section>
   </main>
