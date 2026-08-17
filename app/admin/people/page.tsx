@@ -1,0 +1,2 @@
+import Link from "next/link";import {people} from "../../../data/people";
+export default function Page(){return <main className="adminPage"><section className="adminSubHero"><div className="wrap"><Link href="/admin">ڈیش بورڈ ←</Link><h1>شخصیات کا انتظام</h1></div></section><section className="section"><div className="wrap adminTable">{people.map(p=><div className="adminRow" key={p.slug}><div><b>{p.name}</b><span>{p.council} • {p.designation}</span></div><Link href={`/people/${p.slug}`}>پروفائل</Link></div>)}</div></section></main>}

@@ -1,0 +1,2 @@
+import SearchHub from "../../components/SearchHub";
+export default function Page(){return <main><section className="pageHero searchPageHero"><div className="wrap"><span className="eyebrow">جامع تلاش</span><h1>ویب سائٹ میں تلاش کریں</h1><p>ایک ہی جگہ سے مضامین، سرگرمیوں اور مجلس کی شخصیات تلاش کریں۔</p></div></section><section className="section"><div className="wrap"><SearchHub/></div></section></main>}
