@@ -15,10 +15,13 @@ type NavItem={href:string;label:string;icon:string;roles:Role[]};
 
 const items:NavItem[]=[
   {href:"/admin",label:"ڈیش بورڈ",icon:"⌂",roles:["admin","editor"]},
+  {href:"/admin/analytics",label:"Analytics",icon:"◒",roles:["admin"]},
   {href:"/admin/articles",label:"مضامین",icon:"✎",roles:["admin","editor"]},
   {href:"/admin/activities",label:"سرگرمیاں",icon:"◈",roles:["admin","editor"]},
   {href:"/admin/people",label:"شخصیات",icon:"◉",roles:["admin","editor"]},
   {href:"/admin/content",label:"بنیادی صفحات",icon:"▤",roles:["admin","editor"]},
+  {href:"/admin/review",label:"Review Queue",icon:"✓",roles:["admin"]},
+  {href:"/admin/schedule",label:"Publishing Schedule",icon:"◷",roles:["admin"]},
   {href:"/admin/settings",label:"ویب سائٹ سیٹنگز",icon:"⚙",roles:["admin"]},
   {href:"/admin/memberships",label:"رکنیت درخواستیں",icon:"◇",roles:["admin"]},
   {href:"/admin/messages",label:"رابطہ پیغامات",icon:"✉",roles:["admin"]},
@@ -28,7 +31,8 @@ const items:NavItem[]=[
   {href:"/admin/activity-log",label:"Activity Log",icon:"≡",roles:["admin"]},
   {href:"/admin/system",label:"System Health",icon:"◌",roles:["admin"]},
   {href:"/admin/device-qa",label:"Device QA",icon:"▣",roles:["admin"]},
-  {href:"/admin/export",label:"Backup / Export",icon:"⇩",roles:["admin"]},
+  {href:"/admin/backups",label:"Backup History",icon:"⇩",roles:["admin"]},
+  {href:"/admin/export",label:"Quick Export",icon:"↧",roles:["admin"]},
   {href:"/admin/launch",label:"Launch Audit",icon:"✓",roles:["admin"]}
 ];
 

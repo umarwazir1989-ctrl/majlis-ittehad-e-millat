@@ -6,6 +6,7 @@ import {siteConfig} from "../lib/seo/site";
 import {getSiteSettings} from "../lib/content/settings";
 import SiteHeader from "../components/SiteHeader";
 import NewsletterForm from "../components/NewsletterForm";
+import AnalyticsTracker from "../components/AnalyticsTracker";
 
 const nastaliq=Noto_Nastaliq_Urdu({
   subsets:["arabic"],weight:["400","500","600","700"],display:"swap",variable:"--font-urdu"
@@ -47,6 +48,7 @@ export default async function RootLayout({children}:{children:React.ReactNode}){
   return <html lang="ur" dir="rtl" className={`${nastaliq.variable} ${arabic.variable}`}>
     <body>
       <SiteHeader/>
+      <AnalyticsTracker/>
       <div id="main-content">{children}</div>
 
       <footer className="siteFooterV15">

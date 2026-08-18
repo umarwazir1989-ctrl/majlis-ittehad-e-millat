@@ -3,6 +3,10 @@ import {createClient} from "../../../lib/supabase/server";
 import {getAdminContext} from "../../../lib/admin/auth";
 import {deleteArticle} from "../actions";
 
+function StatusBadge({status}:{status:string}){
+  return <span className={`workflowBadgeV18 ${status}`}>{status}</span>;
+}
+
 export default async function Page(){
   const ctx=await getAdminContext();
   const s=await createClient();
@@ -15,8 +19,15 @@ export default async function Page(){
       <Link className="adminAdd" href="/admin/articles/new">+ نیا مضمون</Link>
     </div></section>
     <section className="section"><div className="wrap adminTable">
-      {data?.length?data.map(a=><div className="adminRow" key={a.id}>
-        <div><b>{a.title}</b><span>{a.category} • {a.status}</span></div>
+      {data?.length?data.map(a=><div className="adminRow workflowRowV18" key={a.id}>
+        <div>
+          <b>{a.title}</b>
+          <span>{a.category}</span>
+          <div className="workflowMetaV18">
+            <StatusBadge status={a.status}/>
+            {a.scheduled_for&&<small>{new Date(a.scheduled_for).toLocaleString("ur-PK")}</small>}
+          </div>
+        </div>
         <div className="adminRowActions">
           <Link href={`/articles/${a.slug}`}>دیکھیں</Link>
           <Link href={`/admin/articles/${a.id}/edit`}>ترمیم</Link>

@@ -30,14 +30,21 @@ export async function getPublicArticles():Promise<PublicArticle[]>{
   try{
     const s=await createClient();
     const {data,error}=await s.from("articles")
-      .select("id,title,slug,category,author,excerpt,content,created_at,image_url,verified")
-      .eq("status","published")
+      .select("id,title,slug,category,author,excerpt,content,created_at,published_at,scheduled_for,image_url,verified,status")
+      .in("status",["published","scheduled"])
       .order("created_at",{ascending:false});
+
     if(error||!data?.length)return productionMode?[]:staticArticles;
-    return data.map(x=>({
+
+    const now=Date.now();
+    const visible=data.filter(x=>x.status==="published"||(x.status==="scheduled"&&x.scheduled_for&&new Date(x.scheduled_for).getTime()<=now));
+
+    if(!visible.length)return productionMode?[]:staticArticles;
+
+    return visible.map(x=>({
       id:x.id,title:x.title,slug:x.slug,category:x.category,author:x.author,
-      date:displayDate(x.created_at),excerpt:x.excerpt,content:paragraphs(x.content),
-      image_url:x.image_url,verified:Boolean(x.verified)
+      date:displayDate(x.published_at||x.scheduled_for||x.created_at),excerpt:x.excerpt,
+      content:paragraphs(x.content),image_url:x.image_url,verified:Boolean(x.verified)
     }));
   }catch{return productionMode?[]:staticArticles}
 }
@@ -47,12 +54,15 @@ export async function getPublicArticle(slug:string):Promise<PublicArticle|undefi
     try{
       const s=await createClient();
       const {data,error}=await s.from("articles")
-        .select("id,title,slug,category,author,excerpt,content,created_at,image_url,verified")
-        .eq("slug",slug).eq("status","published").maybeSingle();
-      if(!error&&data)return{
+        .select("id,title,slug,category,author,excerpt,content,created_at,published_at,scheduled_for,image_url,verified,status")
+        .eq("slug",slug).in("status",["published","scheduled"]).maybeSingle();
+
+      const visible=data&&(data.status==="published"||(data.status==="scheduled"&&data.scheduled_for&&new Date(data.scheduled_for).getTime()<=Date.now()));
+
+      if(!error&&data&&visible)return{
         id:data.id,title:data.title,slug:data.slug,category:data.category,author:data.author,
-        date:displayDate(data.created_at),excerpt:data.excerpt,content:paragraphs(data.content),
-        image_url:data.image_url,verified:Boolean(data.verified)
+        date:displayDate(data.published_at||data.scheduled_for||data.created_at),excerpt:data.excerpt,
+        content:paragraphs(data.content),image_url:data.image_url,verified:Boolean(data.verified)
       };
     }catch{}
   }
@@ -64,12 +74,20 @@ export async function getPublicActivities():Promise<PublicActivity[]>{
   try{
     const s=await createClient();
     const {data,error}=await s.from("activities")
-      .select("id,title,slug,type,event_date,location,excerpt,content,created_at,image_url,verified")
-      .eq("status","published")
+      .select("id,title,slug,type,event_date,location,excerpt,content,created_at,published_at,scheduled_for,image_url,verified,status")
+      .in("status",["published","scheduled"])
       .order("event_date",{ascending:false,nullsFirst:false});
+
     if(error||!data?.length)return productionMode?[]:staticActivities;
-    return data.map(x=>({
-      id:x.id,title:x.title,slug:x.slug,type:x.type,date:displayDate(x.event_date||x.created_at),
+
+    const now=Date.now();
+    const visible=data.filter(x=>x.status==="published"||(x.status==="scheduled"&&x.scheduled_for&&new Date(x.scheduled_for).getTime()<=now));
+
+    if(!visible.length)return productionMode?[]:staticActivities;
+
+    return visible.map(x=>({
+      id:x.id,title:x.title,slug:x.slug,type:x.type,
+      date:displayDate(x.event_date||x.published_at||x.scheduled_for||x.created_at),
       location:x.location||"",excerpt:x.excerpt,content:paragraphs(x.content),
       image_url:x.image_url,verified:Boolean(x.verified)
     }));
@@ -81,10 +99,14 @@ export async function getPublicActivity(slug:string):Promise<PublicActivity|unde
     try{
       const s=await createClient();
       const {data,error}=await s.from("activities")
-        .select("id,title,slug,type,event_date,location,excerpt,content,created_at,image_url,verified")
-        .eq("slug",slug).eq("status","published").maybeSingle();
-      if(!error&&data)return{
-        id:data.id,title:data.title,slug:data.slug,type:data.type,date:displayDate(data.event_date||data.created_at),
+        .select("id,title,slug,type,event_date,location,excerpt,content,created_at,published_at,scheduled_for,image_url,verified,status")
+        .eq("slug",slug).in("status",["published","scheduled"]).maybeSingle();
+
+      const visible=data&&(data.status==="published"||(data.status==="scheduled"&&data.scheduled_for&&new Date(data.scheduled_for).getTime()<=Date.now()));
+
+      if(!error&&data&&visible)return{
+        id:data.id,title:data.title,slug:data.slug,type:data.type,
+        date:displayDate(data.event_date||data.published_at||data.scheduled_for||data.created_at),
         location:data.location||"",excerpt:data.excerpt,content:paragraphs(data.content),
         image_url:data.image_url,verified:Boolean(data.verified)
       };
