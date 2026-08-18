@@ -2,18 +2,11 @@
 import {revalidatePath} from "next/cache";
 import {redirect} from "next/navigation";
 import {createClient} from "../../../lib/supabase/server";
-
-async function requireAdmin(){
-  const supabase=await createClient();
-  const {data:{user}}=await supabase.auth.getUser();
-  if(!user)redirect("/admin/login");
-  const {data:profile}=await supabase.from("profiles").select("role").eq("id",user.id).single();
-  if(profile?.role!=="admin")throw new Error("Unauthorized");
-  return supabase;
-}
+import {requireContentEditor} from "../../../lib/admin/auth";
 
 export async function updateSitePage(slug:string,formData:FormData){
-  const supabase=await requireAdmin();
+  await requireContentEditor();
+  const supabase=await createClient();
 
   const eyebrow=String(formData.get("eyebrow")||"").trim();
   const title=String(formData.get("title")||"").trim();

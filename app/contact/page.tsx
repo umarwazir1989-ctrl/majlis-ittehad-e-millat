@@ -1,21 +1,26 @@
 import Link from "next/link";
 import {submitMessage} from "./actions";
-import {displayOrPending,siteDetails} from "../../data/site";
+import {displayOrPending} from "../../data/site";
+import {getSiteSettings} from "../../lib/content/settings";
 
+export const dynamic="force-dynamic";
 export const metadata={title:"رابطہ",description:"مجلس اتحادِ ملت سے رابطہ کریں، سوال یا تجویز بھیجیں۔"};
 
 export default async function Page({searchParams}:{searchParams:Promise<{success?:string;error?:string}>}){
-  const q=await searchParams;
-  const c=siteDetails.contact;
+  const [q,s]=await Promise.all([searchParams,getSiteSettings()]);
+  const c=s.contact;
 
   return <main>
-    <section className="pageHero formHero contactHero"><div className="wrap"><span className="eyebrow">ہم سے بات کریں</span><h1>رابطہ</h1><p>سوال، تجویز، علمی تعاون یا مجلس سے متعلق رابطے کے لیے پیغام بھیجیں۔</p></div></section>
+    <section className="pageHero formHero contactHero"><div className="wrap">
+      <span className="eyebrow">ہم سے بات کریں</span><h1>رابطہ</h1>
+      <p>سوال، تجویز، علمی تعاون یا مجلس سے متعلق رابطے کے لیے پیغام بھیجیں۔</p>
+    </div></section>
 
     <section className="section"><div className="wrap"><div className="g2 contactGrid">
       <article className="contactInfoCard">
         <span className="eyebrow">رابطہ معلومات</span>
-        <h2>{siteDetails.name}</h2>
-        <p>حتمی رابطہ معلومات ایک مرکزی configuration فائل سے کنٹرول ہوں گی، اس لیے بعد میں پورے نظام میں ایک ہی جگہ تبدیلی کافی ہوگی۔</p>
+        <h2>{s.brand.name}</h2>
+        <p>یہ معلومات Admin → ویب سائٹ سیٹنگز سے تبدیل کی جا سکتی ہیں۔</p>
         <div className="contactLine"><b>فون</b><span>{displayOrPending(c.phone)}</span></div>
         <div className="contactLine"><b>ای میل</b><span>{displayOrPending(c.email)}</span></div>
         <div className="contactLine"><b>دفتر</b><span>{displayOrPending(c.office)}</span></div>

@@ -1,15 +1,8 @@
 import Link from "next/link";
 import {getPublicActivities,getPublicArticles} from "../lib/content/public";
+import {getSiteSettings} from "../lib/content/settings";
 
 export const dynamic="force-dynamic";
-
-const pillars=[
-  {icon:"shield",title:"اخلاص و دیانت",text:"دینی و ملی امور میں اخلاص، دیانت اور خیر خواہی کو بنیادی قدر سمجھنا۔"},
-  {icon:"unity",title:"عملی وحدت",text:"قومی و اجتماعی مسائل کے حل کے لیے مشترکات کو مضبوط بنیاد بنانا۔"},
-  {icon:"book",title:"تحقیق و فکر",text:"معیاری تحقیق، مطالعہ اور علمی رہنمائی کے ذریعے فکری بلوغ پیدا کرنا۔"},
-  {icon:"dialogue",title:"حوار و مکالمہ",text:"احترام اور شائستگی کے ساتھ سنجیدہ علمی اور فکری گفتگو کو فروغ دینا۔"},
-  {icon:"people",title:"مختلف مکاتبِ فکر",text:"مختلف مکاتبِ فکر اور اداروں کے اہلِ علم کو باہمی تعاون کے لیے قریب لانا۔"}
-];
 
 function Icon({name}:{name:string}){
   if(name==="shield")return <svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.8 2.8 8 7 10 4.2-2 7-5.2 7-10V6l-7-3Z"/><path d="m9.5 12 1.7 1.7 3.7-4"/></svg>;
@@ -20,44 +13,38 @@ function Icon({name}:{name:string}){
 }
 
 export default async function HomePage(){
-  const [articles,activities]=await Promise.all([getPublicArticles(),getPublicActivities()]);
+  const [articles,activities,settings]=await Promise.all([
+    getPublicArticles(),getPublicActivities(),getSiteSettings()
+  ]);
   const latestArticles=articles.slice(0,3);
   const latestActivities=activities.slice(0,2);
+  const h=settings.home;
 
   return <main className="homeV15">
     <section className="proHeroV15">
       <div className="proHeroPatternV15" aria-hidden="true"></div>
       <div className="wrap proHeroGridV15">
         <div className="proHeroCopyV15">
-          <div className="proKickerV15"><span></span>ایک قومی فکری پلیٹ فارم<span></span></div>
-          <h1>فکری ہم آہنگی، علمی مکالمہ<br/>اور ملی وحدت</h1>
-          <p>
-            مجلس اتحادِ ملت اہلِ علم، اہلِ فکر، فکری شخصیات اور مختلف مکاتبِ فکر کے درمیان
-            احترام، باہمی اعتماد اور مشترکہ قومی و ملی مسائل میں تعاون کے لیے ایک علمی و مشاورتی پلیٹ فارم ہے۔
-          </p>
+          <div className="proKickerV15"><span></span>{h.kicker}<span></span></div>
+          <h1>{h.title}</h1>
+          <p>{h.description}</p>
           <div className="proHeroActionsV15">
-            <Link className="proPrimaryBtnV15" href="/about">مجلس کے بارے میں جانیں</Link>
-            <Link className="proSecondaryBtnV15" href="/membership">ہمیں جوائن کریں</Link>
+            <Link className="proPrimaryBtnV15" href={h.primary_url}>{h.primary_label}</Link>
+            <Link className="proSecondaryBtnV15" href={h.secondary_url}>{h.secondary_label}</Link>
           </div>
         </div>
 
         <aside className="proMessageCardV15">
-          <div className="proMessageIconV15">
-            <Icon name="book"/>
-          </div>
-          <h2>مجلس کا بنیادی پیغام</h2>
-          <p>اختلاف خیال اور اختلاف رائے فطری ہیں، لیکن فکری وسعت، تحمل اور احترام کے ساتھ مکالمہ ہماری مشترکہ ذمہ داری ہے۔</p>
-          <div className="proVerseV15">
-            <span>“</span>
-            <b>وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ</b>
-            <span>”</span>
-          </div>
-          <small>سورۃ المائدہ: 2</small>
+          <div className="proMessageIconV15"><Icon name="book"/></div>
+          <h2>{h.message_title}</h2>
+          <p>{h.message_text}</p>
+          <div className="proVerseV15"><span>“</span><b>{h.verse_text}</b><span>”</span></div>
+          <small>{h.verse_reference}</small>
         </aside>
       </div>
 
       <div className="wrap proPillarStripV15">
-        {pillars.map(p=><article key={p.title}>
+        {h.pillars.slice(0,5).map((p,i)=><article key={`${p.title}-${i}`}>
           <div className="proPillarIconV15"><Icon name={p.icon}/></div>
           <h3>{p.title}</h3>
           <p>{p.text}</p>
@@ -68,12 +55,9 @@ export default async function HomePage(){
     <section className="proAboutSectionV15">
       <div className="wrap">
         <div className="proSectionHeadV15">
-          <span>ہم کون ہیں؟</span>
-          <h2>مجلس اتحادِ ملت کیا ہے؟</h2>
-          <p>
-            ایک غیر جماعتی، غیر فرقہ وارانہ اور غیر انتخابی علمی و مشاورتی فورم،
-            جس کا مقصد مختلف فکری مکاتب کے درمیان تعمیری مکالمہ، باہمی احترام اور ملی یکجہتی کو فروغ دینا ہے۔
-          </p>
+          <span>{h.about_eyebrow}</span>
+          <h2>{h.about_title}</h2>
+          <p>{h.about_description}</p>
         </div>
 
         <div className="proAboutBodyV15">
@@ -84,15 +68,15 @@ export default async function HomePage(){
           </div>
 
           <div className="proForumsV15">
-            <div className="proForumsTitleV15"><span></span><h3>ہمارے اہم فورمز</h3><span></span></div>
+            <div className="proForumsTitleV15"><span></span><h3>{h.forums_title}</h3><span></span></div>
             <div className="proForumGridV15">
               <Link href="/leadership" className="proForumCardV15">
                 <div className="proForumBadgeV15 gold"><Icon name="people"/></div>
-                <div><span>علمی رہنمائی</span><h3>مجلس بزرگان</h3><p>دانشمندوں، روحانی و فکری قائدین اور ممتاز شخصیات پر مشتمل اعلیٰ علمی فورم۔</p><b>تفصیل دیکھیں ←</b></div>
+                <div><span>{h.elders_eyebrow}</span><h3>{h.elders_title}</h3><p>{h.elders_description}</p><b>تفصیل دیکھیں ←</b></div>
               </Link>
               <Link href="/advisory" className="proForumCardV15">
                 <div className="proForumBadgeV15 green"><Icon name="unity"/></div>
-                <div><span>اجتماعی مشاورت</span><h3>مجلس مشاورت</h3><p>اہلِ علم و فکر اور ماہرین پر مشتمل مشاورتی فورم جو اہم مسائل پر تجاویز مرتب کرتا ہے۔</p><b>تفصیل دیکھیں ←</b></div>
+                <div><span>{h.advisory_eyebrow}</span><h3>{h.advisory_title}</h3><p>{h.advisory_description}</p><b>تفصیل دیکھیں ←</b></div>
               </Link>
             </div>
           </div>
@@ -103,22 +87,13 @@ export default async function HomePage(){
     {(latestArticles.length>0||latestActivities.length>0)&&
       <section className="proUpdatesSectionV15">
         <div className="wrap">
-          <div className="proSectionHeadV15 compact">
-            <span>تازہ ترین</span>
-            <h2>علمی مواد اور سرگرمیاں</h2>
-          </div>
+          <div className="proSectionHeadV15 compact"><span>تازہ ترین</span><h2>علمی مواد اور سرگرمیاں</h2></div>
           <div className="proUpdatesGridV15">
             {latestArticles.map(a=><Link className="proUpdateCardV15" href={`/articles/${a.slug}`} key={a.slug}>
-              <span className="proUpdateTypeV15">مضمون</span>
-              <h3>{a.title}</h3>
-              <p>{a.excerpt}</p>
-              <b>مکمل پڑھیں ←</b>
+              <span className="proUpdateTypeV15">مضمون</span><h3>{a.title}</h3><p>{a.excerpt}</p><b>مکمل پڑھیں ←</b>
             </Link>)}
             {latestActivities.map(a=><Link className="proUpdateCardV15 activity" href={`/activities/${a.slug}`} key={a.slug}>
-              <span className="proUpdateTypeV15">سرگرمی</span>
-              <h3>{a.title}</h3>
-              <p>{a.excerpt}</p>
-              <b>تفصیل دیکھیں ←</b>
+              <span className="proUpdateTypeV15">سرگرمی</span><h3>{a.title}</h3><p>{a.excerpt}</p><b>تفصیل دیکھیں ←</b>
             </Link>)}
           </div>
         </div>
