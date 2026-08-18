@@ -2829,3 +2829,510 @@ img,svg{
   .homeContactCardsV19{grid-template-columns:1fr}
   .homeContactCopyV19 h2{font-size:27px}
 }
+
+/* =========================================================
+   Phase 19 — Typography Precision + Production QA
+   Final override layer: fixes Nastaliq overlap/clipping.
+   ========================================================= */
+
+html,body{
+  font-synthesis:none;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+.homeProV19,
+.homeProV19 *{
+  font-synthesis:none;
+}
+
+/* ---------- Hero: controlled Nastaliq rhythm ---------- */
+.homeHeroV19{
+  overflow:visible;
+  padding-top:48px;
+}
+
+.homeHeroGridV19{
+  grid-template-columns:minmax(0,1.34fr) minmax(330px,.7fr);
+  gap:60px;
+  align-items:center;
+  padding-bottom:30px;
+}
+
+.homeHeroCopyV19{
+  max-width:780px;
+}
+
+.homeHeroCopyV19 h1{
+  max-width:720px;
+  margin:2px 0 4px;
+  padding:.08em 0 .12em;
+  font-size:clamp(38px,3.1vw,49px);
+  line-height:2.02;
+  font-weight:600;
+  letter-spacing:0;
+  word-spacing:0;
+  white-space:normal;
+  word-break:normal;
+  overflow-wrap:normal;
+  text-wrap:pretty;
+}
+
+.homeHeroLeadV19{
+  max-width:760px;
+  font-size:15px;
+  line-height:2.35;
+  font-weight:400;
+}
+
+.homeEyebrowV19{
+  margin-bottom:0;
+  font-size:12px;
+}
+
+.homeIdentityV19{
+  margin-top:10px;
+  font-size:11px;
+}
+
+.homeHeroActionsV19{
+  margin-top:18px;
+}
+
+/* ---------- Message card ---------- */
+.homeMessageCardV19{
+  padding:27px 28px 25px;
+}
+
+.homeMessageCardV19 h2{
+  margin:1px 0 7px;
+  font-size:21px;
+  line-height:2.05;
+  font-weight:600;
+}
+
+.homeMessageCardV19>p{
+  font-size:13px;
+  line-height:2.25;
+}
+
+.homeVerseV19 b{
+  line-height:2;
+}
+
+/* ---------- Core values: never clip text ---------- */
+.homeValuesV19{
+  transform:none;
+  margin-top:4px;
+  margin-bottom:42px;
+  overflow:visible;
+  align-items:stretch;
+}
+
+.homeValuesV19 article{
+  min-height:176px;
+  height:auto;
+  overflow:visible;
+  padding:18px 14px 22px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+}
+
+.homeValuesV19 h3{
+  margin:2px 0 0;
+  font-size:17px;
+  line-height:2.05;
+  font-weight:600;
+  white-space:normal;
+}
+
+.homeValuesV19 p{
+  max-width:205px;
+  margin:0 auto;
+  padding:0 1px 4px;
+  overflow:visible;
+  font-size:12px;
+  line-height:2.2;
+  font-weight:400;
+  white-space:normal;
+  word-break:normal;
+}
+
+/* ---------- Following section starts naturally, no overlap ---------- */
+.homeIntroV19{
+  padding:70px 0 70px;
+}
+
+.homeSectionTitleV19{
+  margin-bottom:27px;
+}
+
+.homeSectionTitleV19 h2{
+  margin:2px 0 4px;
+  font-size:clamp(29px,2.6vw,37px);
+  line-height:2.05;
+  font-weight:600;
+  letter-spacing:0;
+}
+
+.homeSectionTitleV19 p{
+  font-size:14px;
+  line-height:2.3;
+}
+
+.homeDefinitionV19 h3,
+.homeForumCardV19 h3,
+.homeUpdateCardV19 h3,
+.homeContactCopyV19 h2{
+  font-weight:600;
+  letter-spacing:0;
+}
+
+/* Header/nav typography stays compact and un-stretched */
+.proDesktopNavV15 a,
+.proCtaV15{
+  font-weight:600;
+  letter-spacing:0;
+}
+
+.proDesktopNavV15 a{
+  line-height:1.9;
+}
+
+/* ---------- Laptop ---------- */
+@media(max-width:1200px){
+  .homeHeroGridV19{
+    gap:42px;
+    grid-template-columns:minmax(0,1.25fr) minmax(310px,.72fr);
+  }
+
+  .homeHeroCopyV19 h1{
+    font-size:clamp(36px,3.5vw,45px);
+    line-height:2.04;
+  }
+
+  .homeValuesV19 article{
+    min-height:184px;
+  }
+}
+
+/* ---------- Tablet ---------- */
+@media(max-width:1050px){
+  .homeHeroV19{
+    padding-top:38px;
+  }
+
+  .homeHeroGridV19{
+    grid-template-columns:1fr;
+    gap:24px;
+  }
+
+  .homeHeroCopyV19 h1{
+    max-width:690px;
+    margin-inline:auto;
+    font-size:42px;
+    line-height:2.04;
+  }
+
+  .homeValuesV19{
+    grid-template-columns:repeat(2,1fr);
+    margin-bottom:32px;
+  }
+
+  .homeValuesV19 article{
+    min-height:160px;
+  }
+
+  .homeValuesV19 article:last-child{
+    grid-column:1/-1;
+  }
+
+  .homeIntroV19{
+    padding-top:58px;
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media(max-width:680px){
+  .homeHeroV19{
+    padding-top:26px;
+  }
+
+  .homeHeroCopyV19 h1{
+    max-width:100%;
+    font-size:31px;
+    line-height:2.15;
+    padding-bottom:.16em;
+  }
+
+  .homeHeroLeadV19{
+    font-size:13.5px;
+    line-height:2.35;
+  }
+
+  .homeValuesV19{
+    grid-template-columns:1fr;
+    margin-top:0;
+    margin-bottom:22px;
+  }
+
+  .homeValuesV19 article,
+  .homeValuesV19 article:last-child{
+    grid-column:auto;
+    min-height:0;
+    height:auto;
+    overflow:visible;
+    padding:15px 15px 17px;
+    display:grid;
+    grid-template-columns:46px minmax(0,1fr);
+    gap:11px;
+    align-items:start;
+    text-align:right;
+  }
+
+  .homeValueIconV19{
+    margin-top:5px;
+  }
+
+  .homeValuesV19 h3{
+    font-size:16px;
+    line-height:2.05;
+  }
+
+  .homeValuesV19 p{
+    max-width:none;
+    margin:0;
+    font-size:11.5px;
+    line-height:2.25;
+  }
+
+  .homeIntroV19{
+    padding-top:48px;
+  }
+
+  .homeSectionTitleV19 h2{
+    font-size:27px;
+    line-height:2.1;
+  }
+}
+
+/* =========================================================
+   Phase 19 — Production QA Admin
+   ========================================================= */
+.productionQaHeroV19{
+  background:linear-gradient(120deg,#edf5f1,#fff8ec);
+}
+
+.productionQaSummaryV19{
+  display:grid;
+  grid-template-columns:180px 1fr;
+  gap:20px;
+  align-items:center;
+  margin-bottom:22px;
+  padding:24px;
+  border:1px solid var(--b);
+  border-radius:20px;
+  background:#fff;
+}
+
+.productionQaScoreV19{
+  width:150px;
+  height:150px;
+  display:grid;
+  place-items:center;
+  align-content:center;
+  justify-self:center;
+  border-radius:50%;
+  background:conic-gradient(#0b574f var(--score),#eee8de 0);
+  position:relative;
+}
+
+.productionQaScoreV19:before{
+  content:"";
+  position:absolute;
+  inset:11px;
+  border-radius:50%;
+  background:#fff;
+}
+
+.productionQaScoreV19 strong,
+.productionQaScoreV19 span{
+  position:relative;
+  z-index:1;
+}
+
+.productionQaScoreV19 strong{
+  color:#0b574f;
+  font-family:var(--font-clean);
+  font-size:30px;
+}
+
+.productionQaScoreV19 span{
+  color:#7e8983;
+  font-size:10px;
+}
+
+.productionQaSummaryV19 h2{
+  margin:0;
+  color:#17473f;
+  font-size:27px;
+}
+
+.productionQaSummaryV19 p{
+  margin:3px 0 0;
+  color:#6d7872;
+}
+
+.qaCategoryGridV19{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.qaCategoryV19{
+  overflow:hidden;
+  border:1px solid var(--b);
+  border-radius:17px;
+  background:#fff;
+}
+
+.qaCategoryV19>header{
+  padding:15px 17px;
+  border-bottom:1px solid #eee5d8;
+  background:#fbf8f1;
+}
+
+.qaCategoryV19>header span{
+  color:#ab7b35;
+  font-family:var(--font-clean);
+  font-size:9px;
+}
+
+.qaCategoryV19>header h3{
+  margin:0;
+  color:#17483f;
+  font-size:21px;
+}
+
+.qaCheckV19{
+  display:grid;
+  grid-template-columns:24px 1fr auto;
+  gap:10px;
+  align-items:start;
+  padding:12px 16px;
+  border-bottom:1px solid #f0e9df;
+}
+
+.qaCheckV19:last-child{
+  border-bottom:0;
+}
+
+.qaCheckV19>i{
+  width:22px;
+  height:22px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  font-style:normal;
+  font-family:var(--font-clean);
+  font-size:10px;
+}
+
+.qaCheckV19.pass>i{
+  background:#e2f3e7;
+  color:#27613c;
+}
+
+.qaCheckV19.warn>i{
+  background:#fff0d5;
+  color:#8b6326;
+}
+
+.qaCheckV19.fail>i{
+  background:#fae4e1;
+  color:#8c4139;
+}
+
+.qaCheckV19 b{
+  display:block;
+  color:#3f554e;
+  font-size:12px;
+}
+
+.qaCheckV19 p{
+  margin:1px 0 0;
+  color:#818b86;
+  font-size:10px;
+  line-height:1.7;
+}
+
+.qaCheckV19>span{
+  font-family:var(--font-clean);
+  font-size:9px;
+  color:#89938e;
+}
+
+.manualQaV19{
+  margin-top:20px;
+  padding:22px;
+  border:1px solid var(--b);
+  border-radius:17px;
+  background:#fff;
+}
+
+.manualQaV19 h3{
+  margin:0 0 12px;
+  color:#17483f;
+  font-size:22px;
+}
+
+.manualQaGridV19{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+}
+
+.manualQaGridV19>div{
+  display:flex;
+  gap:8px;
+  align-items:flex-start;
+  padding:11px;
+  border:1px solid #eee5d9;
+  border-radius:10px;
+  background:#fcfaf6;
+}
+
+.manualQaGridV19 span{
+  color:#bf8a38;
+  font-family:var(--font-clean);
+  font-size:10px;
+}
+
+.manualQaGridV19 b{
+  color:#53645e;
+  font-size:11px;
+  line-height:1.8;
+}
+
+@media(max-width:900px){
+  .qaCategoryGridV19{
+    grid-template-columns:1fr;
+  }
+
+  .manualQaGridV19{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:620px){
+  .productionQaSummaryV19{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  .manualQaGridV19{
+    grid-template-columns:1fr;
+  }
+}

@@ -121,6 +121,7 @@ export default async function AdminPage(){
               <Link href="/admin/users"><b>Users & Roles</b><span>Admin / Editor permissions ←</span></Link>
               <Link href="/admin/activity-log"><b>Activity Log</b><span>Audit trail ←</span></Link>
               <Link href="/admin/system"><b>System Health</b><span>Monitoring ←</span></Link>
+              <Link href="/admin/production-qa"><b>Production QA</b><span>Launch readiness ←</span></Link>
               <Link href="/admin/device-qa"><b>Device QA</b><span>Responsive previews ←</span></Link>
               <Link href="/admin/content-audit"><b>Content Audit</b><span>Completeness ←</span></Link>
               <Link href="/admin/launch"><b>Launch Audit</b><span>Production checklist ←</span></Link>

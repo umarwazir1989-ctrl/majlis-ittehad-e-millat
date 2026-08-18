@@ -30,6 +30,7 @@ const items:NavItem[]=[
   {href:"/admin/users",label:"Users & Roles",icon:"♙",roles:["admin"]},
   {href:"/admin/activity-log",label:"Activity Log",icon:"≡",roles:["admin"]},
   {href:"/admin/system",label:"System Health",icon:"◌",roles:["admin"]},
+  {href:"/admin/production-qa",label:"Production QA",icon:"◆",roles:["admin"]},
   {href:"/admin/device-qa",label:"Device QA",icon:"▣",roles:["admin"]},
   {href:"/admin/backups",label:"Backup History",icon:"⇩",roles:["admin"]},
   {href:"/admin/export",label:"Quick Export",icon:"↧",roles:["admin"]},
